@@ -9,14 +9,7 @@
         </span>
       </div>
       <div class="card-content">
-        Line Profile : {{ profile }}
         <div class="row">
-          <div class="field--section">
-            <h5>您的 Line 名稱</h5>
-            <div class="input-field col s12">
-              <span>{{ profile.displayName }}</span>
-            </div>
-          </div>
           <div class="field--section">
             <h5>請問您的大名? (真實姓+名)</h5>
             <div class="input-field col s12">
@@ -243,18 +236,9 @@ export default {
     ErrorMessage
   },
   name: "RegiestForm",
-  props: {
-    profile: {
-      lineUserId: "",
-      displayName: "1111"
-    }
-  },
   data() {
     return {
       regiestForm: {
-        lineUserId: this.profile.userId,
-        lineUserName: this.profile.displayName,
-        fullName: ""
       }
     };
   },

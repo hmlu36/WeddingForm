@@ -2,12 +2,15 @@
   "name": "WeddingForm",
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
+    "serve": "vite",
     "build": "vite build"
   },
   "dependencies": {
-    "vee-validate": "^4.0.0-alpha.14",
-    "vue": "^3.0.4"
+    "axios": "^0.21.0",
+    "materialize-css": "^1.0.0-rc.2",
+    "vee-validate": "^4.0.6",
+    "vue": "^3.0.4",
+    "yup": "^0.32.8"
   },
   "devDependencies": {
     "vite": "^1.0.0-rc.13",
