@@ -123,7 +123,7 @@
           </div>
           <ErrorMessage name="attendPeople" class="error" />
         </div>
-        <div class="row attend--field" v-if="regiestForm.attendEvent == 1">
+        <div class="row attend--field" v-if="regiestForm.attendEvent == '拜託，我一定要參加！'">
           <h5>是否需要安排素食餐點？</h5>
           <div class="radio--group p-l-5">
             <div class="switch">
@@ -133,6 +133,18 @@
                 <span class="lever"></span>
                 是
               </label>
+            </div>
+          </div>
+          <div v-if="regiestForm.vegetarian">
+            <h5>人數</h5>
+            <div class="radio--group p-l-5">
+              <Field name="vegetarianNumber" as="select" v-model="regiestForm.vegetarianNumber">
+                <option value="1">1 人</option>
+                <option value="2">2 人</option>
+                <option value="3">3 人</option>
+                <option value="4">4 人</option>
+                <option value="5">5 人</option>
+              </Field>
             </div>
           </div>
         </div>
@@ -152,13 +164,13 @@
               </label>
             </p>
           </div>
-          <div class="invite--address" v-if="regiestForm.inviteType == '請寄給我喜帖 ~ 讓我珍藏'">
-            <Field name="inviteAddress" as="input" v-model="regiestForm.inviteAddress" />
+          <div class="input-field col s12" v-if="regiestForm.inviteType == '請寄給我喜帖 ~ 讓我珍藏'">
+            <Field name="inviteAddress" as="input" type="text" v-model="regiestForm.inviteAddress" />
             <label for="inviteAddress">喜帖收件地址 (含郵遞區號)</label>
           </div>
           <ErrorMessage name="inviteAddress" class="error" />
-          <div class="invite--address" v-if="regiestForm.inviteType == '愛護地球，請寄給我電子喜帖'">
-            <Field name="inviteEmailAddress" as="input" v-model="regiestForm.inviteEmailAddress" />
+          <div class="input-field col s12" v-if="regiestForm.inviteType == '愛護地球，請寄給我電子喜帖'">
+            <Field name="inviteEmailAddress" as="input" type="text" v-model="regiestForm.inviteEmailAddress" />
             <label for="inviteEmailAddress">喜帖收件電子地址</label>
           </div>
           <ErrorMessage name="inviteEmailAddress" class="error" />
@@ -185,6 +197,7 @@
   </Form>
 </template>
 <script>
+import { reactive } from 'vue';
 import { Field, Form, ErrorMessage } from 'vee-validate';
 //import { onMounted } from 'vue';
 //import * as yup from 'yup';
@@ -196,13 +209,8 @@ export default {
     Form,
     ErrorMessage,
   },
-  data() {
-    return {
-      regiestForm: {},
-      items: [],
-    };
-  },
   setup(props, context) {
+    const regiestForm = reactive({});
     const onSubmit = (values) => {
       //alert(JSON.stringify(values));
       saveItem(values);
@@ -232,22 +240,28 @@ export default {
           當天出席人數: item.attendPeople,
           是否需準備兒童座椅: item.child,
           是否需要安排素食餐點: item.vegetarian,
+          素食人數: item.vegetarianNumber,
           喜帖寄送方式: item.inviteType,
           地址: item.inviteAddress,
           電子郵件: item.inviteEmailAddress,
           想對我們說的話: item.message,
         },
       };
-      console.log(JSON.stringify(data));
+      //console.log(JSON.stringify(data));
 
       // save the record
       axios.post(`https://api.airtable.com/v0/${app_id}/${airTableName}`, data, { headers: { Authorization: 'Bearer ' + app_key, 'Content-Type': 'application/json' } }).then((response) => {
-        console.log(recv95q4x11yVjdGn);
+        console.log(response);
+        if (!!response && !!response.data.id) {
+          alert('儲存成功');
+          Object.assign(regiestForm, {});
+        }
       });
     };
     return {
       onSubmit,
       schema,
+      regiestForm,
     };
   },
 };
