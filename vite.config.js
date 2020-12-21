@@ -1,5 +1,5 @@
 // vue.config.js
-
+console.log(process.env.NODE_ENV);
 module.exports = {
-  indexPath: process.env.NODE_ENV === 'production' ? '/WeddingForm/' : '/', //發佈對應路徑
+  base: process.env.NODE_ENV === 'production' ? '/WeddingForm/' : '/', //發佈對應路徑
 };
