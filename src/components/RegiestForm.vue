@@ -223,7 +223,7 @@ export default {
     const airTableName = 'WeddingForm';
 
     const onSubmit = () => {
-      console.log(JSON.stringify(registerForm));
+      //console.log(JSON.stringify(registerForm));
 
       let data = {
         fields: {
@@ -242,7 +242,7 @@ export default {
           想對我們說的話: registerForm.message,
         },
       };
-      console.log(JSON.stringify(data));
+      //console.log(JSON.stringify(data));
 
       document.querySelector('.blockUI').setAttribute('style', 'display:inline');
       axios
