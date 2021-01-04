@@ -159,7 +159,7 @@
             </p>
             <p>
               <label>
-                <Field name="inviteType" as="input" type="radio" value="愛護地球，電子喜帖也可以不用" v-model="registerForm.inviteType" />
+                <Field name="inviteType" as="input" type="radio" value="愛護地球，可以不用電子或紙本喜帖" v-model="registerForm.inviteType" />
                 <span>愛護地球，電子喜帖也可以不用</span>
               </label>
             </p>
