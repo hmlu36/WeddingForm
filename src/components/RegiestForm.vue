@@ -1,5 +1,5 @@
 <template>
-  <Form @submit="onSubmit" :validation-schema="schema">
+  <Form @submit.preventDefault="onSubmit">
     <div class="card">
       <div class="card-image">
         <img src="https://image.freepik.com/free-vector/cute-bride-groom-cartoon-wedding-invitation-card_21630-737.jpg" />
@@ -12,7 +12,7 @@
         <div class="row">
           <h5>您的大名? (真實姓+名)</h5>
           <div class="input-field col s12">
-            <Field name="fullName" as="input" type="text" v-model="registerForm.fullName" />
+            <Field name="fullName" as="input" type="text" :rules="isRequired" v-model="registerForm.fullName" />
             <label for="fullName">您的回答</label>
             <ErrorMessage name="fullName" class="error" />
           </div>
@@ -31,13 +31,13 @@
           <div class="radio--group p-l-5">
             <p>
               <label>
-                <Field name="relation" as="input" type="radio" value="男方親友" v-model="registerForm.relation" />
+                <Field name="relation" as="input" type="radio" :rules="isRequired" value="男方親友" v-model="registerForm.relation" />
                 <span>男方親友</span>
               </label>
             </p>
             <p>
               <label>
-                <Field name="relation" as="input" type="radio" value="女方親友" v-model="registerForm.relation" />
+                <Field name="relation" as="input" type="radio" :rules="isRequired" value="女方親友" v-model="registerForm.relation" />
                 <span>女方親友</span>
               </label>
             </p>
@@ -49,25 +49,25 @@
           <div class="radio--group p-l-5">
             <p>
               <label>
-                <Field name="attendWedding" as="input" type="radio" value="這是一定要的！" v-model="registerForm.attendWedding" />
+                <Field name="attendWedding" as="input" type="radio" :rules="isRequired" value="這是一定要的！" v-model="registerForm.attendWedding" />
                 <span>這是一定要的！</span>
               </label>
             </p>
             <p>
               <label>
-                <Field name="attendWedding" as="input" type="radio" value="時間上來不及參加" v-model="registerForm.attendWedding" />
+                <Field name="attendWedding" as="input" type="radio" :rules="isRequired" value="時間上來不及參加" v-model="registerForm.attendWedding" />
                 <span>時間上來不及參加</span>
               </label>
             </p>
             <p>
               <label>
-                <Field name="attendWedding" as="input" type="radio" value="參加婚宴就好" v-model="registerForm.attendWedding" />
+                <Field name="attendWedding" as="input" type="radio" :rules="isRequired" value="參加婚宴就好" v-model="registerForm.attendWedding" />
                 <span>參加婚宴就好</span>
               </label>
             </p>
             <p>
               <label>
-                <Field name="attendWedding" as="input" type="radio" value="無法出席，祝你們幸福滿滿" v-model="registerForm.attendWedding" />
+                <Field name="attendWedding" as="input" type="radio" :rules="isRequired" value="無法出席，祝你們幸福滿滿" v-model="registerForm.attendWedding" />
                 <span>無法出席，祝你們幸福滿滿</span>
               </label>
             </p>
@@ -170,7 +170,7 @@
           </div>
           <ErrorMessage name="inviteAddress" class="error" />
           <div class="input-field col s12" v-if="registerForm.inviteType == '愛護地球，請寄給我電子喜帖'">
-            <Field name="inviteEmailAddress" as="input" type="email" v-model="registerForm.inviteEmailAddress" />
+            <Field name="inviteEmailAddress" as="input" type="email" :rules="validateEmail" v-model="registerForm.inviteEmailAddress" />
             <label for="inviteEmailAddress">喜帖收件電子地址</label>
           </div>
           <ErrorMessage name="inviteEmailAddress" class="error" />
@@ -203,8 +203,6 @@
 <script>
 import { reactive, onMounted } from 'vue';
 import { Field, Form, ErrorMessage } from 'vee-validate';
-//import { onMounted } from 'vue';
-//import * as yup from 'yup';
 import axios from 'axios';
 
 export default {
@@ -212,11 +210,6 @@ export default {
     Field,
     Form,
     ErrorMessage,
-  },
-  methods: {
-    test(event) {
-      console.log(JSON.stringify(registerForm.message));
-    },
   },
   setup(props, context) {
     const registerForm = reactive({});
@@ -261,19 +254,28 @@ export default {
           }
         });
     };
-    /*
-    const schema = {
-      fullName: 'required',
-      phoneNumber: 'required',
+    const isRequired = (value) => {
+      return value ? true : '此欄位必填';
     };
-*/
+
+    const validateEmail = (value) => {
+      // if the field is not a valid email
+      if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
+        return '電子郵件無效';
+      }
+
+      // All is good
+      return true;
+    };
+
     onMounted(() => {
       var textNeedCount = document.querySelectorAll('.wordcount');
       M.CharacterCounter.init(textNeedCount);
     });
     return {
       onSubmit,
-      // schema,
+      isRequired,
+      validateEmail,
       registerForm,
     };
   },
