@@ -26,10 +26,3 @@ export default {
   methods: {},
 };
 </script>
-
-<style>
-@import url('https://fonts.googleapis.com/css?family=Noto+Sans+TC');
-* {
-  font-family: 'Noto Sans TC';
-}
-</style>

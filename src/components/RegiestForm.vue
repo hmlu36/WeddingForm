@@ -26,7 +26,7 @@
             <ErrorMessage name="phoneNumber" class="error" />
           </div>
         </div>
-        <div class="row attend--field">
+        <div class="row">
           <h5>您和新人的關係是?</h5>
           <div class="radio--group p-l-5">
             <p>
@@ -92,7 +92,7 @@
             <ErrorMessage name="attendEvent" class="error" />
           </div>
         </div>
-        <div class="row attend--field" v-if="registerForm.attendEvent == '拜託，我一定要參加！'">
+        <div class="row" v-if="registerForm.attendEvent == '拜託，我一定要參加！'">
           <h5>當天出席人數</h5>
           <div>
             <select name="attendPeople" as="select" v-model="registerForm.attendPeople">
@@ -105,7 +105,7 @@
           </div>
           <ErrorMessage name="attendPeople" class="error" />
         </div>
-        <div class="row attend--field" v-if="registerForm.attendEvent == 1">
+        <div class="row" v-if="registerForm.attendEvent == 1">
           <h5>是否需要準備兒童座椅?</h5>
           <div class="radio--group p-l-5">
             <Field name="child" as="select" v-model="registerForm.child">
@@ -117,7 +117,7 @@
           </div>
           <ErrorMessage name="attendPeople" class="error" />
         </div>
-        <div class="row attend--field" v-if="registerForm.attendEvent == '拜託，我一定要參加！'">
+        <div class="row" v-if="registerForm.attendEvent == '拜託，我一定要參加！'">
           <h5>是否需要安排素食餐點？</h5>
           <div class="radio--group p-l-5">
             <div class="switch">
@@ -142,7 +142,7 @@
             </div>
           </div>
         </div>
-        <div class="row attend--field send--invited" v-if="['拜託，我一定要參加！', '禮到人不到，請寄喜帖給我！'].includes(registerForm.attendEvent)">
+        <div class="row send--invited" v-if="['拜託，我一定要參加！', '禮到人不到，請寄喜帖給我！'].includes(registerForm.attendEvent)">
           <h5>喜帖寄送方式：</h5>
           <div class="radio--group p-l-5">
             <p>
@@ -183,7 +183,7 @@
             <label for="textarea1">您的悄悄話</label>
           </div>
         </div>
-        <div class="row attend--field">
+        <div class="row">
           <h5>溫馨小提醒</h5>
           <blockquote>如果您已送出表單，但有要更改，再麻煩提前說一聲哦！</blockquote>
         </div>
