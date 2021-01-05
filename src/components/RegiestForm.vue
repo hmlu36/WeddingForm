@@ -49,25 +49,33 @@
           <div class="radio--group p-l-5">
             <p>
               <label>
-                <Field name="attendWedding" as="input" type="radio" :rules="isRequired" value="這是一定要的！" v-model="registerForm.attendWedding" @click="registerForm.attendEvent=true"/>
+                <Field name="attendWedding" as="input" type="radio" :rules="isRequired" value="這是一定要的！" v-model="registerForm.attendWedding" @click="registerForm.attendEvent = true" />
                 <span>這是一定要的！</span>
               </label>
             </p>
             <p>
               <label>
-                <Field name="attendWedding" as="input" type="radio" :rules="isRequired" value="時間上來不及參加" v-model="registerForm.attendWedding" @click="registerForm.attendEvent=true"/>
+                <Field name="attendWedding" as="input" type="radio" :rules="isRequired" value="時間上來不及參加" v-model="registerForm.attendWedding" @click="registerForm.attendEvent = true" />
                 <span>時間上來不及參加</span>
               </label>
             </p>
             <p>
               <label>
-                <Field name="attendWedding" as="input" type="radio" :rules="isRequired" value="參加婚宴就好" v-model="registerForm.attendWedding" @click="registerForm.attendEvent=true"/>
+                <Field name="attendWedding" as="input" type="radio" :rules="isRequired" value="參加婚宴就好" v-model="registerForm.attendWedding" @click="registerForm.attendEvent = true" />
                 <span>參加婚宴就好</span>
               </label>
             </p>
             <p>
               <label>
-                <Field name="attendWedding" as="input" type="radio" :rules="isRequired" value="無法出席，祝你們幸福滿滿" v-model="registerForm.attendWedding" @click="registerForm.attendEvent=false"/>
+                <Field
+                  name="attendWedding"
+                  as="input"
+                  type="radio"
+                  :rules="isRequired"
+                  value="無法出席，祝你們幸福滿滿"
+                  v-model="registerForm.attendWedding"
+                  @click="registerForm.attendEvent = false"
+                />
                 <span>無法出席，祝你們幸福滿滿</span>
               </label>
             </p>
@@ -98,6 +106,9 @@
                   <option value="3">3 人</option>
                   <option value="4">4 人</option>
                   <option value="5">5 人</option>
+                  <option value="6">6 人</option>
+                  <option value="7">7 人</option>
+                  <option value="8">8 人</option>
                 </select>
               </div>
               <ErrorMessage name="attendPeople" class="error" />
