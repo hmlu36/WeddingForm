@@ -74,79 +74,81 @@
             <ErrorMessage name="attendWedding" class="error" />
           </div>
         </div>
-        <div class="row" v-if="['這是一定要的！', '時間上來不及參加', '參加婚宴就好'].includes(registerForm.attendWedding)">
-          <h5>是否願意與參加午宴？</h5>
-          <div class="radio--group p-l-5">
-            <p>
-              <label>
-                <Field name="attendEvent" as="input" type="radio" value="拜託，我一定要參加！" v-model="registerForm.attendEvent" />
-                <span>拜託，我一定要參加！</span>
-              </label>
-            </p>
-            <p>
-              <label>
-                <Field name="attendEvent" as="input" type="radio" value="禮到人不到，請寄喜帖給我！" v-model="registerForm.attendEvent" />
-                <span>禮到人不到，請寄喜帖給我！</span>
-              </label>
-            </p>
-            <ErrorMessage name="attendEvent" class="error" />
-          </div>
-        </div>
-        <div class="row" v-if="registerForm.attendEvent == '拜託，我一定要參加！'">
-          <h5>當天出席人數</h5>
-          <div>
-            <select name="attendPeople" as="select" v-model="registerForm.attendPeople">
-              <option value="1">1 人</option>
-              <option value="2">2 人</option>
-              <option value="3">3 人</option>
-              <option value="4">4 人</option>
-              <option value="5">5 人</option>
-            </select>
-          </div>
-          <ErrorMessage name="attendPeople" class="error" />
-        </div>
-        <div class="row" v-if="registerForm.attendEvent == 1">
-          <h5>是否需要準備兒童座椅?</h5>
-          <div class="radio--group p-l-5">
-            <Field name="child" as="select" v-model="registerForm.child">
-              <option value="不需要" selected>不需要</option>
-              <option value="1">1 張</option>
-              <option value="2">2 張</option>
-              <option value="3">3 張</option>
-            </Field>
-          </div>
-          <ErrorMessage name="attendPeople" class="error" />
-        </div>
-        <div class="row" v-if="registerForm.attendEvent == '拜託，我一定要參加！'">
-          <h5>是否需要安排素食餐點？</h5>
-          <div class="radio--group p-l-5">
-            <div class="switch">
-              <label>
-                否
-                <input type="checkbox" v-model="registerForm.vegetarian" />
-                <span class="lever"></span>
-                是
-              </label>
+        <div v-if="['這是一定要的！', '時間上來不及參加', '參加婚宴就好'].includes(registerForm.attendWedding)">
+          <div class="row">
+            <h5>是否願意與參加午宴？</h5>
+            <div class="radio--group p-l-5">
+              <p>
+                <label>
+                  <Field name="attendEvent" as="input" type="radio" value="拜託，我一定要參加！" v-model="registerForm.attendEvent" />
+                  <span>拜託，我一定要參加！</span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <Field name="attendEvent" as="input" type="radio" value="禮到人不到，請寄喜帖給我！" v-model="registerForm.attendEvent" />
+                  <span>禮到人不到，請寄喜帖給我！</span>
+                </label>
+              </p>
+              <ErrorMessage name="attendEvent" class="error" />
             </div>
           </div>
-          <div v-if="registerForm.vegetarian">
-            <h5>素食餐點人數</h5>
-            <div class="radio--group p-l-5">
-              <Field name="vegetarianNumber" as="select" v-model="registerForm.vegetarianNumber">
+          <div class="row" v-if="registerForm.attendEvent == '拜託，我一定要參加！'">
+            <h5>當天出席人數</h5>
+            <div>
+              <select name="attendPeople" as="select" v-model="registerForm.attendPeople">
                 <option value="1">1 人</option>
                 <option value="2">2 人</option>
                 <option value="3">3 人</option>
                 <option value="4">4 人</option>
                 <option value="5">5 人</option>
+              </select>
+            </div>
+            <ErrorMessage name="attendPeople" class="error" />
+          </div>
+          <div class="row" v-if="registerForm.attendEvent == 1">
+            <h5>是否需要準備兒童座椅?</h5>
+            <div class="radio--group p-l-5">
+              <Field name="child" as="select" v-model="registerForm.child">
+                <option value="不需要" selected>不需要</option>
+                <option value="1">1 張</option>
+                <option value="2">2 張</option>
+                <option value="3">3 張</option>
               </Field>
             </div>
+            <ErrorMessage name="attendPeople" class="error" />
           </div>
-        </div>
-        <div class="row" v-show="registerForm.attendEvent == '拜託，我一定要參加！'">
-          <h5>備註</h5>
-          <div class="input-field col s12">
-            <textarea id="remark" class="materialize-textarea wordcount" v-model="registerForm.remark" data-length="120"></textarea>
-            <label for="remark">有關午宴備註說明(例如：需要兒童座椅)</label>
+          <div class="row" v-if="registerForm.attendEvent == '拜託，我一定要參加！'">
+            <h5>是否需要安排素食餐點？</h5>
+            <div class="radio--group p-l-5">
+              <div class="switch">
+                <label>
+                  否
+                  <input type="checkbox" v-model="registerForm.vegetarian" />
+                  <span class="lever"></span>
+                  是
+                </label>
+              </div>
+            </div>
+            <div v-if="registerForm.vegetarian">
+              <h5>素食餐點人數</h5>
+              <div class="radio--group p-l-5">
+                <Field name="vegetarianNumber" as="select" v-model="registerForm.vegetarianNumber">
+                  <option value="1">1 人</option>
+                  <option value="2">2 人</option>
+                  <option value="3">3 人</option>
+                  <option value="4">4 人</option>
+                  <option value="5">5 人</option>
+                </Field>
+              </div>
+            </div>
+          </div>
+          <div class="row" v-show="registerForm.attendEvent == '拜託，我一定要參加！'">
+            <h5>備註</h5>
+            <div class="input-field col s12">
+              <textarea id="remark" class="materialize-textarea wordcount" v-model="registerForm.remark" data-length="120"></textarea>
+              <label for="remark">有關午宴備註說明(例如：需要兒童座椅)</label>
+            </div>
           </div>
         </div>
         <div class="row send--invited" v-if="['拜託，我一定要參加！', '禮到人不到，請寄喜帖給我！'].includes(registerForm.attendEvent)">
@@ -251,21 +253,20 @@ export default {
           },
         })
         .then((response) => {
-          console.log(response);
           document.querySelector('.blockUI').setAttribute('style', 'display:none');
           if (!!response && !!response.data.id) {
             Swal.fire({
               icon: 'success',
-              text: '儲存成功，有要更改，再麻煩提前說一聲哦！'
+              html: '儲存成功<br/>感謝您的填寫，需要更改，再麻煩提前說一聲哦！',
             });
             Object.assign(registerForm, {});
           }
         })
         .catch((error) => {
           Swal.fire({
-              icon: 'error',
-              text: '儲存失敗，請洽管理員！'
-            });
+            icon: 'error',
+            text: '儲存失敗，請洽管理員！',
+          });
         });
     };
     const isRequired = (value) => {
@@ -284,7 +285,6 @@ export default {
 
     onMounted(() => {
       var textNeedCount = document.querySelectorAll('.wordcount');
-      console.log(textNeedCount.length);
       M.CharacterCounter.init(textNeedCount);
     });
     return {
