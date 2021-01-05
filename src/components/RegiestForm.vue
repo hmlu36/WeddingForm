@@ -130,7 +130,7 @@
             </div>
           </div>
           <div v-if="registerForm.vegetarian">
-            <h5>人數</h5>
+            <h5>素食餐點人數</h5>
             <div class="radio--group p-l-5">
               <Field name="vegetarianNumber" as="select" v-model="registerForm.vegetarianNumber">
                 <option value="1">1 人</option>
@@ -142,8 +142,15 @@
             </div>
           </div>
         </div>
+        <div class="row" v-show="registerForm.attendEvent == '拜託，我一定要參加！'">
+          <h5>備註</h5>
+          <div class="input-field col s12">
+            <textarea id="remark" class="materialize-textarea wordcount" v-model="registerForm.remark" data-length="120"></textarea>
+            <label for="remark">有關午宴備註說明(例如：需要兒童座椅)</label>
+          </div>
+        </div>
         <div class="row send--invited" v-if="['拜託，我一定要參加！', '禮到人不到，請寄喜帖給我！'].includes(registerForm.attendEvent)">
-          <h5>喜帖寄送方式：</h5>
+          <h5>喜帖寄送方式</h5>
           <div class="radio--group p-l-5">
             <p>
               <label>
@@ -160,7 +167,7 @@
             <p>
               <label>
                 <Field name="inviteType" as="input" type="radio" value="愛護地球，可以不用電子或紙本喜帖" v-model="registerForm.inviteType" />
-                <span>愛護地球，電子喜帖也可以不用</span>
+                <span>愛護地球，紙本跟電子喜帖可以都不用</span>
               </label>
             </p>
           </div>
@@ -179,13 +186,9 @@
           <h5>想對我們說的話 ❤️</h5>
           <blockquote style="border-left: 5px solid #26a69a">當天會將您的祝福放在大螢幕上哦~</blockquote>
           <div class="input-field col s12">
-            <textarea id="textarea1" class="materialize-textarea wordcount" v-model="registerForm.message" data-length="120"></textarea>
-            <label for="textarea1">您的悄悄話</label>
+            <textarea id="message" class="materialize-textarea wordcount" v-model="registerForm.message" data-length="120"></textarea>
+            <label for="message">您的悄悄話</label>
           </div>
-        </div>
-        <div class="row">
-          <h5>溫馨小提醒</h5>
-          <blockquote>如果您已送出表單，但有要更改，再麻煩提前說一聲哦！</blockquote>
         </div>
         <div class="card-action center-align">
           <button class="btn waves-effect waves-light" type="submit">送出</button>
@@ -204,6 +207,7 @@
 import { reactive, onMounted } from 'vue';
 import { Field, Form, ErrorMessage } from 'vee-validate';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 export default {
   components: {
@@ -229,6 +233,7 @@ export default {
           是否需準備兒童座椅: registerForm.child,
           是否需要安排素食餐點: registerForm.vegetarian,
           素食人數: registerForm.vegetarianNumber,
+          其他備註: registerForm.remark,
           喜帖寄送方式: registerForm.inviteType,
           地址: registerForm.inviteAddress,
           電子郵件: registerForm.inviteEmailAddress,
@@ -246,12 +251,21 @@ export default {
           },
         })
         .then((response) => {
-          //console.log(response);
+          console.log(response);
           document.querySelector('.blockUI').setAttribute('style', 'display:none');
           if (!!response && !!response.data.id) {
-            alert('儲存成功');
+            Swal.fire({
+              icon: 'success',
+              text: '儲存成功，有要更改，再麻煩提前說一聲哦！'
+            });
             Object.assign(registerForm, {});
           }
+        })
+        .catch((error) => {
+          Swal.fire({
+              icon: 'error',
+              text: '儲存失敗，請洽管理員！'
+            });
         });
     };
     const isRequired = (value) => {
@@ -270,6 +284,7 @@ export default {
 
     onMounted(() => {
       var textNeedCount = document.querySelectorAll('.wordcount');
+      console.log(textNeedCount.length);
       M.CharacterCounter.init(textNeedCount);
     });
     return {
