@@ -257,7 +257,8 @@ export default {
           if (!!response && !!response.data.id) {
             Swal.fire({
               icon: 'success',
-              html: '儲存成功<br/>感謝您的填寫，需要更改，再麻煩提前說一聲哦！',
+              title: '儲存成功',
+              html: '感謝您的填寫<br/>若需要更改資料，再麻煩提前說哦！',
             });
             Object.assign(registerForm, {});
           }
@@ -265,7 +266,8 @@ export default {
         .catch((error) => {
           Swal.fire({
             icon: 'error',
-            text: '儲存失敗，請洽管理員！',
+            title: '儲存失敗',
+            text: '請洽管理員！',
           });
         });
     };
