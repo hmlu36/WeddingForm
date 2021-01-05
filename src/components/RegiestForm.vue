@@ -151,7 +151,7 @@
             </div>
           </div>
         </div>
-        <div class="row send--invited" v-if="['拜託，我一定要參加！', '禮到人不到，請寄喜帖給我！'].includes(registerForm.attendEvent)">
+        <div class="row send--invited">
           <h5>喜帖寄送方式</h5>
           <div class="radio--group p-l-5">
             <p>
