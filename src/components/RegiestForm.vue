@@ -135,6 +135,9 @@
                     <option value="3">3 人</option>
                     <option value="4">4 人</option>
                     <option value="5">5 人</option>
+                    <option value="6">6 人</option>
+                    <option value="7">7 人</option>
+                    <option value="8">8 人</option>
                   </Field>
                 </div>
               </div>
