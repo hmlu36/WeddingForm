@@ -190,7 +190,7 @@
           </div>
           <ErrorMessage name="inviteAddress" class="error" />
           <div class="input-field col s12" v-if="registerForm.inviteType == '愛護地球，請寄給我電子喜帖'">
-            <Field name="inviteEmailAddress" as="input" type="email" :rules="validateEmail" v-model="registerForm.inviteEmailAddress" />
+            <Field name="inviteEmailAddress" as="input" type="email" v-model="registerForm.inviteEmailAddress" />
             <label for="inviteEmailAddress">喜帖收件電子地址</label>
           </div>
           <ErrorMessage name="inviteEmailAddress" class="error" />
