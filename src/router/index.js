@@ -3,6 +3,7 @@ const routerHistory = createWebHistory();
 
 export default createRouter({
     history: createWebHistory(),
+    base: '/WeddingForm/',
     routes: [
         {
             path: "/",
