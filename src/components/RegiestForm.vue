@@ -223,6 +223,7 @@ import { reactive, onMounted } from 'vue';
 import { defineRule, Field, Form, ErrorMessage } from 'vee-validate';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
 
 export default {
   components: {
