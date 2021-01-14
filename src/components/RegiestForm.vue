@@ -190,7 +190,7 @@
           </div>
           <ErrorMessage name="inviteAddress" class="error" />
           <div class="input-field col s12" v-if="registerForm.inviteType == '愛護地球，請寄給我電子喜帖'">
-            <Field name="inviteEmailAddress" as="input" type="email" v-model="registerForm.inviteEmailAddress" />
+            <Field name="inviteEmailAddress" as="input" type="email" :rules="validateEmail" v-model="registerForm.inviteEmailAddress" />
             <label for="inviteEmailAddress">喜帖收件電子地址</label>
           </div>
           <ErrorMessage name="inviteEmailAddress" class="error" />
@@ -217,13 +217,10 @@
   </div>
 </template>
 <script>
-import M from 'materialize-css';
-import 'materialize-css/dist/css/materialize.min.css';
 import { reactive, onMounted } from 'vue';
-import { defineRule, Field, Form, ErrorMessage } from 'vee-validate';
+import { Field, Form, ErrorMessage } from 'vee-validate';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import 'sweetalert2/dist/sweetalert2.min.css';
 
 export default {
   components: {
@@ -300,13 +297,6 @@ export default {
       // All is good
       return true;
     };
-
-    defineRule('required', (value) => {
-      if (!value || !value.length) {
-        return '此欄位必填';
-      }
-      return true;
-    });
 
     onMounted(() => {
       var textNeedCount = document.querySelectorAll('.wordcount');
