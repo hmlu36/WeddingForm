@@ -16,12 +16,12 @@
       <div class="arrows-group" v-if="config.arrows">
         <a class="button-prev" href="#" @click.prevent="toPrev">
           <slot name="arrows-prev">
-            <img src="//akveo.github.io/eva-icons/outline/png/128/arrow-ios-back-outline.png" />
+            <img src="https://akveo.github.io/eva-icons/outline/png/128/arrow-ios-back-outline.png" />
           </slot>
         </a>
         <a class="button-next" href="#" @click.prevent="toNext">
           <slot name="arrows-next">
-            <img src="//akveo.github.io/eva-icons/outline/png/128/arrow-ios-forward-outline.png" />
+            <img src="https://akveo.github.io/eva-icons/outline/png/128/arrow-ios-forward-outline.png" />
           </slot>
         </a>
       </div>
