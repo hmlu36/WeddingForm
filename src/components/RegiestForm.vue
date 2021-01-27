@@ -10,8 +10,10 @@
       </div>
       <div class="card-content left-align">
         <h5>泓民 & 佳恩 婚禮</h5>
-        <strong>⛪地點：徠·歸仁飯店<br />
-        &emsp;(台南市歸仁區中山路三段455號) </strong><br />
+        <strong
+          >⛪地點：徠·歸仁飯店<br />
+          (台南市歸仁區中山路三段455號) </strong
+        ><br />
         <strong>📅日期：2021/04/24(六)</strong><br />
         <strong>⏰時間：上午10:30(10點可入場) ~ 中午12:00</strong><br />
         <strong>🧡午宴：中午12:00 ~ 下午02:00</strong><br />
@@ -20,7 +22,7 @@
         <div class="row">
           <h5>您的大名? (真實姓+名)</h5>
           <div class="input-field col s12">
-            <Field name="fullName" as="input" type="text" :rules="isRequired" v-model="registerForm.fullName" />
+            <Field name="fullName" as="input" type="text" rules="required" v-model="registerForm.fullName" />
             <label for="fullName">您的回答</label>
             <ErrorMessage name="fullName" class="error" />
           </div>
@@ -39,13 +41,13 @@
           <div class="radio--group p-l-5">
             <p>
               <label>
-                <Field name="relation" as="input" type="radio" :rules="isRequired" value="男方親友" v-model="registerForm.relation" />
+                <Field name="relation" as="input" type="radio" rules="required" value="男方親友" v-model="registerForm.relation" />
                 <span>男方親友</span>
               </label>
             </p>
             <p>
               <label>
-                <Field name="relation" as="input" type="radio" :rules="isRequired" value="女方親友" v-model="registerForm.relation" />
+                <Field name="relation" as="input" type="radio" rules="required" value="女方親友" v-model="registerForm.relation" />
                 <span>女方親友</span>
               </label>
             </p>
@@ -57,33 +59,25 @@
           <div class="radio--group p-l-5">
             <p>
               <label>
-                <Field name="attendWedding" as="input" type="radio" :rules="isRequired" value="這是一定要的！" v-model="registerForm.attendWedding" @click="registerForm.attendEvent = true" />
+                <Field name="attendWedding" as="input" type="radio" rules="required" value="這是一定要的！" v-model="registerForm.attendWedding" @click="registerForm.attendEvent = true" />
                 <span>這是一定要的！</span>
               </label>
             </p>
             <p>
               <label>
-                <Field name="attendWedding" as="input" type="radio" :rules="isRequired" value="時間上來不及參加" v-model="registerForm.attendWedding" @click="registerForm.attendEvent = true" />
+                <Field name="attendWedding" as="input" type="radio" rules="required" value="時間上來不及參加" v-model="registerForm.attendWedding" @click="registerForm.attendEvent = true" />
                 <span>時間上來不及參加</span>
               </label>
             </p>
             <p>
               <label>
-                <Field name="attendWedding" as="input" type="radio" :rules="isRequired" value="參加婚宴就好" v-model="registerForm.attendWedding" @click="registerForm.attendEvent = true" />
+                <Field name="attendWedding" as="input" type="radio" rules="required" value="參加婚宴就好" v-model="registerForm.attendWedding" @click="registerForm.attendEvent = true" />
                 <span>參加婚宴就好</span>
               </label>
             </p>
             <p>
               <label>
-                <Field
-                  name="attendWedding"
-                  as="input"
-                  type="radio"
-                  :rules="isRequired"
-                  value="無法出席，祝你們幸福滿滿"
-                  v-model="registerForm.attendWedding"
-                  @click="registerForm.attendEvent = false"
-                />
+                <Field name="attendWedding" as="input" type="radio" rules="required" value="無法出席，祝你們幸福滿滿" v-model="registerForm.attendWedding" @click="registerForm.attendEvent = false" />
                 <span>無法出席，祝你們幸福滿滿</span>
               </label>
             </p>
@@ -97,7 +91,7 @@
               <div class="switch">
                 <label>
                   否
-                  <input type="checkbox" v-model="registerForm.attendEvent" ref="attendEvent" />
+                  <input type="checkbox" v-model="registerForm.attendEvent" />
                   <span class="lever"></span>
                   是
                 </label>
@@ -108,7 +102,7 @@
             <div class="row">
               <h5>當天出席人數</h5>
               <div>
-                <select name="attendPeople" as="select" v-model="registerForm.attendPeople">
+                <Field name="attendPeople" as="select" v-model="registerForm.attendPeople" rules="required|chainRequired:@registerForm.attendEvent">
                   <option value="1">1 人</option>
                   <option value="2">2 人</option>
                   <option value="3">3 人</option>
@@ -117,7 +111,7 @@
                   <option value="6">6 人</option>
                   <option value="7">7 人</option>
                   <option value="8">8 人</option>
-                </select>
+                </Field>
               </div>
               <ErrorMessage name="attendPeople" class="error" />
             </div>
@@ -175,33 +169,34 @@
           <div class="radio--group p-l-5">
             <p>
               <label>
-                <Field name="inviteType" as="input" type="radio" value="請寄給我喜帖 ~ 讓我珍藏" v-model="registerForm.inviteType" />
+                <Field name="inviteType" as="input" type="radio" value="請寄給我喜帖 ~ 讓我珍藏" v-model="registerForm.inviteType" rules="required" />
                 <span>請寄給我喜帖 ~ 讓我珍藏</span>
               </label>
             </p>
             <p>
               <label>
-                <Field name="inviteType" as="input" type="radio" value="愛護地球，請寄給我電子喜帖" v-model="registerForm.inviteType" />
+                <Field name="inviteType" as="input" type="radio" value="愛護地球，請寄給我電子喜帖" v-model="registerForm.inviteType" rules="required" />
                 <span>愛護地球，請寄給我電子喜帖</span>
               </label>
             </p>
             <p>
               <label>
-                <Field name="inviteType" as="input" type="radio" value="愛護地球，可以不用電子或紙本喜帖" v-model="registerForm.inviteType" />
+                <Field name="inviteType" as="input" type="radio" value="愛護地球，可以不用電子或紙本喜帖" v-model="registerForm.inviteType" rules="required" />
                 <span>愛護地球，紙本跟電子喜帖可以都不用</span>
               </label>
             </p>
+            <ErrorMessage name="inviteType" class="error" />
           </div>
           <div class="input-field col s12" v-if="registerForm.inviteType == '請寄給我喜帖 ~ 讓我珍藏'">
             <Field name="inviteAddress" as="input" type="text" v-model="registerForm.inviteAddress" />
             <label for="inviteAddress">喜帖收件地址 (含郵遞區號)</label>
+            <ErrorMessage name="inviteAddress" class="error" />
           </div>
-          <ErrorMessage name="inviteAddress" class="error" />
           <div class="input-field col s12" v-if="registerForm.inviteType == '愛護地球，請寄給我電子喜帖'">
             <Field name="inviteEmailAddress" as="input" type="email" v-model="registerForm.inviteEmailAddress" />
             <label for="inviteEmailAddress">喜帖收件電子地址</label>
+            <ErrorMessage name="inviteEmailAddress" class="error" />
           </div>
-          <ErrorMessage name="inviteEmailAddress" class="error" />
         </div>
         <div class="row">
           <h5>想對我們說的話 ❤️</h5>
@@ -226,9 +221,30 @@
 </template>
 <script>
 import { reactive, onMounted } from 'vue';
-import { Field, Form, ErrorMessage } from 'vee-validate';
+import { Field, Form, ErrorMessage, defineRule } from 'vee-validate';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+
+defineRule('required', (value) => {
+  if (!value) {
+    return '此欄位必填';
+  }
+  return true;
+});
+
+defineRule('chainRequired', (value, [other]) => {
+  if (other && !value) {
+    return '此欄位必填';
+  }
+  return true;
+});
+
+defineRule('email', (value) => {
+  if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
+    return '電子郵件無效';
+  }
+  return true;
+});
 
 export default {
   components: {
@@ -292,19 +308,6 @@ export default {
           });
         });
     };
-    const isRequired = (value) => {
-      return value ? true : '此欄位必填';
-    };
-
-    const validateEmail = (value) => {
-      // if the field is not a valid email
-      if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
-        return '電子郵件無效';
-      }
-
-      // All is good
-      return true;
-    };
 
     onMounted(() => {
       var textNeedCount = document.querySelectorAll('.wordcount');
@@ -312,8 +315,6 @@ export default {
     });
     return {
       onSubmit,
-      isRequired,
-      validateEmail,
       registerForm,
     };
   },
