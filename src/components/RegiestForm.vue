@@ -9,6 +9,12 @@
         </span>
       </div>
       <div class="card-content left-align">
+        <h5>泓民 & 佳恩 婚禮</h5>
+        <strong>📅日期：2021/04/24(六)</strong><br />
+        <strong>⏰時間：上午10:30(10點可入場) ~ 中午12:00</strong><br />
+        <strong>🧡午宴：中午12:00 ~ 下午02:00</strong><br />
+      </div>
+      <div class="card-content left-align">
         <div class="row">
           <h5>您的大名? (真實姓+名)</h5>
           <div class="input-field col s12">
