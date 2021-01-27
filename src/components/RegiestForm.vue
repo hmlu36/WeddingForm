@@ -10,6 +10,8 @@
       </div>
       <div class="card-content left-align">
         <h5>泓民 & 佳恩 婚禮</h5>
+        <strong>⛪地點：徠·歸仁飯店<br />
+        &emsp;(台南市歸仁區中山路三段455號) </strong><br />
         <strong>📅日期：2021/04/24(六)</strong><br />
         <strong>⏰時間：上午10:30(10點可入場) ~ 中午12:00</strong><br />
         <strong>🧡午宴：中午12:00 ~ 下午02:00</strong><br />
@@ -95,7 +97,7 @@
               <div class="switch">
                 <label>
                   否
-                  <input type="checkbox" v-model="registerForm.attendEvent" />
+                  <input type="checkbox" v-model="registerForm.attendEvent" ref="attendEvent" />
                   <span class="lever"></span>
                   是
                 </label>
